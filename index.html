@@ -3,30 +3,33 @@
 <head>
     <title>BedWars Client Key</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background: #1a1a1a; color: #fff; }
-        #key { font-size: 24px; padding: 20px; background: #333; border-radius: 10px; margin: 20px; }
-        .warning { color: #ff5555; }
+        body { font-family: Arial, sans-serif; text-align: center; background: #1a1a1a; color: #fff; padding: 20px; }
+        #key { font-size: 24px; padding: 20px; background: #333; border-radius: 10px; margin: 20px; word-break: break-all; }
+        .warning { color: #ff5555; font-size: 14px; }
+        .instructions { background: #444; padding: 10px; border-radius: 5px; margin: 10px; }
     </style>
 </head>
 <body>
-    <h1>BedWars Paid Client Key</h1>
-    <p>Copy this key into your Roblox client to unlock cheats!</p>
-    <p id="key">Loading...</p>
-    <p class="warning">Key valid for 24 hours. Don’t share—it’s tied to your Roblox account!</p>
+    <h1>🔥 BedWars Paid Client Key</h1>
+    <p>Your unique key for ESP, Fly, KillAura & more!</p>
+    <div id="key">Loading your key...</div>
+    <div class="instructions">
+        <strong>Instructions:</strong> Copy the key below and paste it into your Roblox client. Valid for 24 hours—don't share!
+    </div>
+    <p class="warning">Key is tied to your Roblox account. Refresh if it doesn't load.</p>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const userId = urlParams.get('userId');
         if (!userId) {
-            document.getElementById('key').innerText = 'Error: No UserId provided.';
+            document.getElementById('key').innerText = 'Error: No UserId provided. Go back and try again.';
         } else {
-            // Simulate key generation (replace with Firebase or Roblox HttpService)
-            const key = Array(26).fill().map(() => String.fromCharCode(65 + Math.floor(Math.random() * 26))).join('');
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let key = '';
+            for (let i = 0; i < 26; i++) {
+                key += chars[Math.floor(Math.random() * 26)];
+            }
             document.getElementById('key').innerText = key;
-            // In prod: Fetch from Firebase or Roblox server
-            // fetch(`https://your-firebase-or-roblox-endpoint/getKey?userId=${userId}`)
-            //     .then(res => res.json())
-            //     .then(data => document.getElementById('key').innerText = data.key)
-            //     .catch(() => document.getElementById('key').innerText = 'Error: Failed to fetch key.');
+            console.log('Generated key for UserId ' + userId + ': ' + key);
         }
     </script>
 </body>
